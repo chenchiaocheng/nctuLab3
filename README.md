@@ -137,6 +137,7 @@ https://classroom.github.com/a/RHNMq4Td
 >> * 先複製SimpleController.py並命名為controller.py  
 >> `cp SimpleController.py controller.py`  
 >> * 根據下圖，修改controller.py裡的switch_features_handler(self, ev)  
+![](https://i.imgur.com/dCCwnwH.jpg)  
 5. Measurement
 > * **Step1. Measure the bandwidth of SimpleController.py**  
 >> * 在第一個terminal用Mininet執行topo.py  
@@ -196,7 +197,7 @@ https://classroom.github.com/a/RHNMq4Td
 > 傳輸延遲 : 0.007ms  
 > 傳送893個datagram，遺失22個datagram => 2.5%遺失率   
 8. Which forwarding rule is better? Why?  
-> SimpleController.py執行起來遺失率較controller.py高，且傳輸延遲也較  多，而且在同樣10秒內，controller.py比SimpleController.py多傳了0.01 MBytes，因此我認為controller.py走的路線規劃比較好。 
+> SimpleController.py執行起來遺失率較controller.py高，且傳輸延遲也較多，而且在同樣10秒內，controller.py比SimpleController.py多傳了0.01 MBytes，因此我認為controller.py走的路線規劃比較好，從s1經過s2再到s3的delay、loss、及bw比從s1直接到s3好。 
 ---
 ## References
 
