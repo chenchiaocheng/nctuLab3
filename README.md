@@ -20,57 +20,57 @@ In this lab, we are going to write a Python program with Ryu SDN framework to bu
 > * How to run your program?
 >> 1. Change the directory into /root/Route_Configuration/src/
 >> 2. Run topology with SimpleController.py
->> a. Run topo.py in one terminal
->> `sudo mn --custom topo.py --topo topo --link tc --controller remote`
->> b. Run SimpleController.py in another terminal
->> `sudo ryu-manager SimpleController.py --observe-links`
->> c. 測量頻寬
->> `mininet> h1 iperf -s -u -i 1 > ./out/result1 &`
->> `mininet> h2 iperf -c 10.0.0.1 -u -i 1 -p 5566`
->> d. leave topo.py first
->> `mininet> exit`
->> e. leave SimpleController.py
->> `Ctrl-z`
->> `mn -c`
+>> a. Run topo.py in one terminal  
+>> `sudo mn --custom topo.py --topo topo --link tc --controller remote`  
+>> b. Run SimpleController.py in another terminal  
+>> `sudo ryu-manager SimpleController.py --observe-links`  
+>> c. 測量頻寬  
+>> `mininet> h1 iperf -s -u -i 1 > ./out/result1 &`  
+>> `mininet> h2 iperf -c 10.0.0.1 -u -i 1 -p 5566`  
+>> d. leave topo.py first  
+>> `mininet> exit`  
+>> e. leave SimpleController.py  
+>> `Ctrl-z`  
+>> `mn -c`  
 >> 3. Run topology with Controller.py
->> a. Run topo.py in one terminal
->> `sudo mn --custom topo.py --topo topo --link tc --controller remote`
->> b. Run Controller.py in another terminal
->> `sudo ryu-manager Controller.py --observe-links`
->> c. 測量頻寬
->> `mininet> h1 iperf -s -u -i 1 > ./out/result2 &`
->> `mininet> h2 iperf -c 10.0.0.1 -u -i 1 -p 5566`
->> d. leave topo.py first
->> `mininet> exit`
->> e. leave Controller.py
->> `Ctrl-z`
->> `mn -c`
-> * What is the meaning of the executing command (both Mininet and Ryu controller)?
+>> a. Run topo.py in one terminal  
+>> `sudo mn --custom topo.py --topo topo --link tc --controller remote`  
+>> b. Run Controller.py in another terminal  
+>> `sudo ryu-manager Controller.py --observe-links`  
+>> c. 測量頻寬  
+>> `mininet> h1 iperf -s -u -i 1 > ./out/result2 &`  
+>> `mininet> h2 iperf -c 10.0.0.1 -u -i 1 -p 5566`  
+>> d. leave topo.py first  
+>> `mininet> exit`  
+>> e. leave Controller.py  
+>> `Ctrl-z`  
+>> `mn -c`  
+> * What is the meaning of the executing command (both Mininet and Ryu controller)?  
 > 1. Mininet:
->> * h1 iperf -s : 選擇h1作為server端，以server模式啟動 
->> * -u : 使用UDP(預設為TCP)
->> * -i 1 : 報告時間間隔1秒
->> * -p : 指定服務器端使用的端口或客戶端所連接的接口
->> * ./out/result1 & : 輸出位址
->> * h2 iperf -c 10.0.1 : 選擇h2作為client端，並且連接IP位址10.0.0.1的服務端
->>> `mininet> h1 iperf -s -u -i 1 -p 5566 > ./out/result1 &`
->>> `mininet> h2 iperf -c 10.0.0.1 -u -i 1 -p 5566`
->>> `mininet> h1 iperf -s -u -i 1 -p 5566 > ./out/result2 &`
->>> `mininet> h2 iperf -c 10.0.0.1 -u -i 1 -p 5566`
->> * mn -- custom 路徑/檔案名稱.py -- topo 拓樸名稱 : 執行topo.py
->> * tc : 速度限制
->> * --controller remote : 外部controller控制
->>> `sudo mn --custom SimpleTopo.py --topo topo --link tc --controller remote`
->>> `sudo mn --custom topo.py --topo topo --link tc --controller remote`
-> 2. Ryu controller
->> * ryu-manager yourapp.py : 執行自己撰寫的python程式
->> * --observe-links : 顯示連結間的訊息 
->>> `sudo ryu-manager SimpleController.py --observe-links`
->>> `sudo ryu-manager Controller.py --observe-links`
-> * Show the screenshot of using iPerf command in Mininet (both `SimpleController.py` and `controller.py`)
-> SimpleController.py :
+>> * h1 iperf -s : 選擇h1作為server端，以server模式啟動   
+>> * -u : 使用UDP(預設為TCP)  
+>> * -i 1 : 報告時間間隔1秒  
+>> * -p : 指定服務器端使用的端口或客戶端所連接的接口  
+>> * ./out/result1 & : 輸出位址  
+>> * h2 iperf -c 10.0.1 : 選擇h2作為client端，並且連接IP位址10.0.0.1的服務端  
+>>> `mininet> h1 iperf -s -u -i 1 -p 5566 > ./out/result1 &`  
+>>> `mininet> h2 iperf -c 10.0.0.1 -u -i 1 -p 5566`  
+>>> `mininet> h1 iperf -s -u -i 1 -p 5566 > ./out/result2 &`  
+>>> `mininet> h2 iperf -c 10.0.0.1 -u -i 1 -p 5566`  
+>> * mn -- custom 路徑/檔案名稱.py -- topo 拓樸名稱 : 執行topo.py  
+>> * tc : 速度限制  
+>> * --controller remote : 外部controller控制  
+>>> `sudo mn --custom SimpleTopo.py --topo topo --link tc --controller remote`  
+>>> `sudo mn --custom topo.py --topo topo --link tc --controller remote`  
+> 2. Ryu controller  
+>> * ryu-manager yourapp.py : 執行自己撰寫的python程式  
+>> * --observe-links : 顯示連結間的訊息   
+>>> `sudo ryu-manager SimpleController.py --observe-links`  
+>>> `sudo ryu-manager Controller.py --observe-links`  
+> * Show the screenshot of using iPerf command in Mininet (both `SimpleController.py` and `controller.py`)  
+> SimpleController.py :  
 ![](https://i.imgur.com/KBdQQWR.png)
-> controller.py : 
+> controller.py :   
 ![](https://i.imgur.com/byRMDWj.png)
 
 
