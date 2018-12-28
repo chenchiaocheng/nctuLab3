@@ -174,11 +174,12 @@ https://classroom.github.com/a/RHNMq4Td
 > 因為要實作Ryu應用程式必須繼承app_manager.RyuApp，它用於加載Ryu應用程式，接受從APP發送過來的訊息，是base裡很重要的文件。
 4. Explain the following code in `controller.py`.
     ```python
-    @set_ev_cls(ofp_event.EventOFPPacketIn, CONFIG_DISPATCHER)
+    @set_ev_cls(ofp_event.EventOFPPacketIn, MAIN_DISPATCHER)
     ```
 > set_ev_cls的第一個參數表示事件發生時應該調用的函數，第二個參數表示要接收哪一個階段的事件。
-> CONFIG_DISPATCHER : 接收SwitchFeatures
-> 所以此行的含義是，接收到switchfeatures消息後，執行switch_features_handler函數。
+> ofp_event.EventOFPPacketIn : 負責Packet-In事件。
+> MAIN_DISPATCHER : switch與controller在完成連接之後才會收到該訊息
+> 所以此行的含義是，在switch與Ryu完成連接後，調用packet_in_handler函數(處理packet_in事件)。
 5. What is the meaning of “datapath” in `controller.py`?
 > 運用OpenFlow的拓樸裡的switch
 6. Why need to set "`ip_proto=17`" in the flow entry?
