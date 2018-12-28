@@ -178,7 +178,7 @@ https://classroom.github.com/a/RHNMq4Td
     ```
 > set_ev_cls的第一個參數表示事件發生時應該調用的函數，第二個參數表示要接收哪一個階段的事件。
 > ofp_event.EventOFPPacketIn : 負責Packet-In事件。
-> MAIN_DISPATCHER : switch與controller在完成連接之後才會收到該訊息
+> MAIN_DISPATCHER : switch與controller在完成連接之後才會收到該訊息。
 > 所以此行的含義是，在switch與Ryu完成連接後，調用packet_in_handler函數(處理packet_in事件)。
 5. What is the meaning of “datapath” in `controller.py`?
 > 運用OpenFlow的拓樸裡的switch
