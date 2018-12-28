@@ -69,9 +69,9 @@ In this lab, we are going to write a Python program with Ryu SDN framework to bu
 >>> `sudo ryu-manager Controller.py --observe-links`  
 > * Show the screenshot of using iPerf command in Mininet (both `SimpleController.py` and `controller.py`)  
 > SimpleController.py :  
-![](https://i.imgur.com/KBdQQWR.png)
+![](https://i.imgur.com/dL9wiKq.png)  
 > controller.py :   
-![](https://i.imgur.com/byRMDWj.png)
+![](https://i.imgur.com/Szmgo2l.png)  
 
 
 ---
@@ -137,7 +137,6 @@ https://classroom.github.com/a/RHNMq4Td
 >> * 先複製SimpleController.py並命名為controller.py  
 >> `cp SimpleController.py controller.py`  
 >> * 根據下圖，修改controller.py裡的switch_features_handler(self, ev)  
-![](https://i.imgur.com/OWzXsxD.png)  
 5. Measurement
 > * **Step1. Measure the bandwidth of SimpleController.py**  
 >> * 在第一個terminal用Mininet執行topo.py  
@@ -154,8 +153,6 @@ https://classroom.github.com/a/RHNMq4Td
 >> `sudo mn --custom topo.py --topo topo --link tc --controller remote`  
 >> * 在第二個terminal用Ryu manager執行controller.py  
 >> `sudo ryu-manager controller.py --observe-links`  
->> ![](https://i.imgur.com/dXmcl7Y.png)  
-
 >> * 測量頻寬，並將結果存在./out/result2  
 >> `mininet> h1 iperf -s -u -i 1 -p 5566 > ./out/result2 &`   
 >> `mininet> h2 iperf -c 10.0.0.1 -u -i 1 -p 5566`  
@@ -185,21 +182,21 @@ https://classroom.github.com/a/RHNMq4Td
 6. Why need to set "`ip_proto=17`" in the flow entry?  
 > 因為要用UDP傳送封包。  
 7. Compare the differences between the iPerf results of `SimpleController.py` and `controller.py` in detail.  
-> SimpleController.py :   
-> `0.0-10.0 sec 1.23 MBytes 1.03 Mbits/sec  0.009ms  16/  893(1.8%)`  
-> 10秒內傳了1.23 MBytes  
-> 平均傳送速度(頻寬) : 1.03 Mbits/sec  
-> 傳輸延遲 : 0.009ms  
-> 傳送893個datagram，遺失16個datagram => 1.8%遺失率  
+> SimpleController.py : 
+> `0.0-10.0 sec 1.21 MBytes 1.02 Mbits/sec  0.013ms  28/  893(3.1%)`
+> 10秒內傳了1.21 MBytes  
+> 平均傳送速度(頻寬) : 1.02 Mbits/sec  
+> 傳輸延遲 : 0.013ms  
+> 傳送893個datagram，遺失28個datagram => 3.1%遺失率  
 >  
 > controller.py :   
-> `0.0-10.0 sec 1.23 MBytes 1.03 Mbits/sec  0.011ms  19/  893(2.1%)`  
-> 10秒內傳了1.23Mbytes  
-> 平均傳送速度(頻寬) : 1.03 Mbits/sec  
-> 傳輸延遲 : 0.011ms  
-> 傳送893個datagram，遺失19個datagram => 2.1%遺失率  
+> `0.0-10.0 sec 1.22 MBytes 1.02 Mbits/sec  0.007ms  22/  893(2.5%)`  
+> 10秒內傳了1.22 Mbytes  
+> 平均傳送速度(頻寬) : 1.02 Mbits/sec  
+> 傳輸延遲 : 0.007ms  
+> 傳送893個datagram，遺失22個datagram => 2.5%遺失率   
 8. Which forwarding rule is better? Why?  
-> SimpleController.py執行起來遺失率較controller.py低，且傳輸延遲也較小，因此我認為SimpleController.py比較好。  
+> SimpleController.py執行起來遺失率較controller.py高，且傳輸延遲也較  多，而且在同樣10秒內，controller.py比SimpleController.py多傳了0.01 MBytes，因此我認為controller.py走的路線規劃比較好。 
 ---
 ## References
 
